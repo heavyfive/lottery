@@ -8,11 +8,11 @@ public class Lottery {
     private static final int TOTAL_NUMBER_OF_BALLS = 45;
     private static final int ELECT_NUMBER_OF_BALLS = 6;
     private static int REPEAT_TIMES_OF_GAME = 5;
-	private static int ENOUGH_COUNT = 1;
+	private static final int ENOUGH_COUNT = 1;
     private static final Printer PRINTER = new Printer();
 
-    private Sphere sphere;
-    private List<Ball> basket;
+    private final Sphere sphere;
+    private final List<Ball> basket;
 
     private Lottery() {
         this.sphere = new Sphere();
