@@ -7,20 +7,40 @@ import java.util.List;
 public class Sphere {
 
 	private List<Ball> balls;
+	private final List<Ball> basket;
 
 	public Sphere() {
 		this.balls = new ArrayList<Ball>();
-	}
-	
-	public List<Ball> getBalls() {
-		return balls;
+		this.basket = new ArrayList<Ball>(); // 추첨된 공 보관 장소
 	}
 
-	public void putIn(Ball ball) {
-		balls.add(ball);
+	/**
+	 * 공 채움
+	 * @param totalBallCount
+	 */
+	void putInBalls(int totalBallCount) {
+		int ballLabel = 1;
+		while(ballLabel <= totalBallCount) {
+			Ball ball = new Ball(ballLabel);
+			balls.add(ball);
+			ballLabel++;
+		}
 	}
-	
-	public Ball pickOutBall() {
+
+	/**
+	 * 공 추첨
+	 * @param electionCount
+	 * @return
+	 */
+	public ArrayList<Ball> pickOutBalls(int electionCount) {
+		while(this.basket.size() < electionCount) {
+			this.basket.add(pickOutBall());
+		}
+
+		return (ArrayList<Ball>) this.basket;
+	}
+
+	private Ball pickOutBall() {
 		this.shuffle();
 		int index = (int)(Math.random() * balls.size());
 		Ball ball = balls.get(index);
@@ -28,11 +48,7 @@ public class Sphere {
 		
 		return ball;
 	}
-	
-	public void clear() {
-		balls.clear();
-	}
-	
+
 	private void shuffle() {
 		Collections.shuffle(balls);
 	}

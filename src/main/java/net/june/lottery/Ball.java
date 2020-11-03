@@ -4,9 +4,7 @@ public class Ball {
 
 	private int label;
 	private String color;
-	
-	public Ball() {}
-	
+
 	public Ball(int label) {
 		this.label = label;
 	}
